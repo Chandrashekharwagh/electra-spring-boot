@@ -5,9 +5,11 @@ import com.electra.repository.AddressRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class AddressService {
     private static final Logger logger = LoggerFactory.getLogger(AddressService.class);
 
@@ -35,7 +37,7 @@ public class AddressService {
     }
 
     public String updateAddress(int id, Address address) {
-        logger.info("/inside the TrainingService.updateTraining()");
+        logger.info("/inside the AddressService.updateTraining()");
         address.setId(id);
         return repo.update(address);
     }

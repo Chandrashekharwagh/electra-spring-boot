@@ -3,18 +3,20 @@ package com.electra.repository;
 import com.electra.domain.Address;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddressRepository implements  AddressEntryRepository<Address>{
+@Repository
+public class AddressRepository implements AddressEntryRepository<Address> {
     private static final Logger logger = LoggerFactory.getLogger(AddressRepository.class);
     private List<Address> addressList = new ArrayList<>();
     private int index = -1;
 
     public String store(Address address) {
         logger.info("/inside the AddressRepository.store()");
-        Address.setId(++index);
+        address.setId(++index);
         addressList.add(index, address);
         return address.toString();
     }
