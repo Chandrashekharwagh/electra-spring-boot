@@ -15,7 +15,7 @@ public class AddressRepository implements  AddressEntryRepository<Address>{
     public String store(Address address) {
         logger.info("/inside the AddressRepository.store()");
         Address.setId(++index);
-        addressList.add(index, Address);
+        addressList.add(index, address);
         return address.toString();
     }
 

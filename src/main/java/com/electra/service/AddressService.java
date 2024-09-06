@@ -21,7 +21,7 @@ public class AddressService {
 
     public String storeAddress(Address address) {
         logger.info("/inside the AddressService.addAddress()");;
-        return repo.store(Address);
+        return repo.store(address);
     }
 
     public String deleteAddress(int id) {

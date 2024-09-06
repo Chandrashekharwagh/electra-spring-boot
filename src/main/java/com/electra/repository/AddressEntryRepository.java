@@ -1,5 +1,7 @@
 package com.electra.repository;
 
+import com.electra.domain.Address;
+
 import java.util.List;
 
 public interface AddressEntryRepository<Address> {

@@ -4,10 +4,10 @@ import lombok.*;
 
 @Getter
 @Setter
-@ToString
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@ToString
 
 public class Address {
     private int id;
