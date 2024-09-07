@@ -37,7 +37,7 @@ public class AddressService {
     }
 
     public String updateAddress(int id, Address address) {
-        logger.info("/inside the AddressService.updateTraining()");
+        logger.info("/inside the AddressService.updateAddress()");
         address.setId(id);
         return repo.update(address);
     }
