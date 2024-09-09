@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is a Spring Boot Rest Service of my Project which will illustrate the conceprts that are in my Project.
+This is a Spring Boot Rest Service of my Project which will illustrate the concepts that are in my Project.
 
 ## Prerequisites
 
