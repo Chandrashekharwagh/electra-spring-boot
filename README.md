@@ -1,4 +1,4 @@
-# My Electra Spring Boot Rest Service
+# Electra Spring Boot Rest Service
 
 ## Overview
 
