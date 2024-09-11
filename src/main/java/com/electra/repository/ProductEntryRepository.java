@@ -1,4 +1,4 @@
 package com.electra.repository;
 
-public class ProductEntryRepository {
+public interface ProductEntryRepository {
 }
