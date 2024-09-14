@@ -12,7 +12,7 @@ Before you begin, ensure you have met the following requirements:
 * You have installed Maven [version number, e.g., 3.6.0 or higher]
 * You have a basic understanding of Spring Boot and RESTful APIs
 
-## Installing My Spring Boot Example
+## Installing My Spring Boot Rest Service
 
 To install the project, follow these steps:
 
@@ -29,7 +29,7 @@ To install the project, follow these steps:
    mvn clean install
    ```
 
-## Using My Spring Boot Example
+## Using My Spring Boot Rest Service
 
 To use the project, follow these steps:
 
