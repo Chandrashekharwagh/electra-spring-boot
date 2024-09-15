@@ -125,8 +125,13 @@ Postman allows you to create and manage environment variables through the "Manag
 
 Postman is a powerful tool that can greatly simplify the process of testing and debugging your local APIs. By using Postman to interact with your local host, you can quickly identify and address issues during the development process, leading to more robust and reliable applications. This README file has provided an overview of using Postman with a local host, and you can further explore Postman's features and capabilities to enhance your API development workflow.
 
+
 ## Contributors
 
 Thanks to the following people who have contributed to this project:
 
 * [@Chandrashekharwagh](https://github.com/Chandrashekharwagh) 📖
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
