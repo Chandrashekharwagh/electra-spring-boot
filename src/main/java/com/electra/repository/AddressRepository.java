@@ -4,7 +4,6 @@ import com.electra.domain.Address;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,15 +45,15 @@ public class AddressRepository implements AddressEntryRepository<Address> {
 
         // Checking if street is neither null nor empty
         if (!(address.getStreet().isBlank() || address.getStreet().isEmpty())) {
-            this.addressList.get(address.getId()).setStreet(address.getStreet());
+            this.addressList.get(Math.toIntExact(address.getId())).setStreet(address.getStreet());
         }
 
         // Checking if postalCode is valid (greater than 0)
         if (address.getPostalCode() > 0) {
-            this.addressList.get(address.getId()).setPostalCode(address.getPostalCode());
+            this.addressList.get(Math.toIntExact(address.getId())).setPostalCode(address.getPostalCode());
         }
 
-        return this.addressList.get(address.getId()).toString();
+        return this.addressList.get(Math.toIntExact(address.getId())).toString();
     }
 
 }
