@@ -1,5 +1,6 @@
 package com.electra.service;
 
+import com.electra.domain.Address;
 import com.electra.domain.Customer;
 import com.electra.repository.CustomerRepository;
 import org.slf4j.Logger;
@@ -13,31 +14,43 @@ public class CustomerService {
     private static final Logger logger = LoggerFactory.getLogger(CustomerService.class);
 
     @Autowired
-    private CustomerRepository repo;
+    private CustomerRepository customerRepo;
 
     public List<Customer> retrieveCustomers() {
-        logger.info("/inside the CustomerService.retrieveCustomers()");
-        return repo.retrieve();
+        logger.info("Inside CustomerService.retrieveCustomers()");
+
+        // Retrieve the list of customers from the repository
+        List<Customer> customers = customerRepo.retrieve();
+
+        // Log the number of customers retrieved
+        logger.info("Number of customers retrieved: " + customers.size());
+
+        // Return the list of customers
+        return customers;
     }
 
+
     public String storeCustomer(Customer customer) {
-        logger.info("/inside the CustomerService.addCustomer()");;
-        return repo.store(customer);
+        logger.info("/inside the CustomerService.storeCustomer");
+        return customerRepo.store(customer, customer.getAddress());
     }
 
     public String deleteCustomer(int id) {
-        logger.info("/inside the CustomerService.removeCustomer()");
-        return repo.delete(id);
+        logger.info("Inside CustomerService.deleteCustomer()");
+        return customerRepo.delete(id);
     }
 
-    public String search(int id) {
-        logger.info("/inside the CustomerService.search()");
-        return repo.search(id);
+
+    public String search(int customerId) {
+        logger.info("/inside the CustomerService.search");
+        return customerRepo.search(customerId);  // Delegate to the repository method
     }
 
-    public String updateCustomer(int id, Customer customer) {
+
+    public String updateCustomer(int id, Customer customer , Address address) {
         logger.info("/inside the CustomerService.updateCustomer()");
         customer.setId(id);
-        return repo.update(customer);
+        address.setId(address.getId());
+        return customerRepo.update(customer , address);
     }
 }
