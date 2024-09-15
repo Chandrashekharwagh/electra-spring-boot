@@ -12,8 +12,8 @@ import lombok.*;
 @Builder
 
 public class Order {
-    private int id;
-    private int productId;
-    private int customerId;
+    private long id;
+    private Product product;
+    private Customer customer;
     private LocalDate orderDate;
 }
