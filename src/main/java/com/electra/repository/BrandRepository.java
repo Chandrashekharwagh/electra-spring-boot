@@ -46,8 +46,8 @@ public class BrandRepository implements BrandEntryRepository<Brand>{
         logger.info("/inside the BrandRepository.update()");
         // Checking if Name is neither null nor empty
         if (!(brand.getName().isBlank() || brand.getName().isEmpty())) {
-            this.brandList.get(brand.getId()).setName(brand.getName());
+            this.brandList.get(Math.toIntExact(brand.getId())).setName(brand.getName());
         }
-        return this.brandList.get(brand.getId()).toString();
+        return this.brandList.get(Math.toIntExact(brand.getId())).toString();
     }
 }
