@@ -11,9 +11,9 @@ import lombok.*;
 @Builder
 
 public class Payment{
-    private int id;
+    private long id;
     private Double amount;
     private LocalDate paymentDate;
-    private Long customerId;
-    private Long orderId;
+    private Customer customer;
+    private Order order;
 }
