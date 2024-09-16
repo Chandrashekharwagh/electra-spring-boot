@@ -3,6 +3,7 @@ package com.electra.repository;
 import com.electra.domain.Customer;
 import com.electra.domain.Order;
 import com.electra.domain.Product;
+import com.electra.domain.Supplier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
@@ -26,51 +27,50 @@ public class OrderRepository implements OrderEntryRepository<Order> {
 
         // Retrieve associated product and customer from the order
         Product product = order.getProduct(); // Assuming Order has a getProduct() method
-        Customer customer = order.getCustomer(); // Assuming Order has a getCustomer() method
+        Customer customer = order.getCustomer();
+        Supplier supplier = order.getSupplier();// Assuming Order has a getCustomer() method
 
         // Log the action
         logger.info("Stored Order with ID " + order.getId() +
                 " for Product with ID " + (product != null ? product.getId() : "None") +
-                " and Customer with ID " + (customer != null ? customer.getId() : "None"));
+                " and Customer with ID " + (customer != null ? customer.getId() : "None") +
+                " and supplier with ID " + (supplier != null ? supplier.getId() : "None"));
 
         return "Order stored for Product ID: " + (product != null ? product.getId() : "None") +
-                " and Customer ID: " + (customer != null ? customer.getId() : "None");
+                " and Customer ID: " + (customer != null ? customer.getId() : "None")+
+                " and Supplier ID: " + (supplier != null ? supplier.getId() : "None");
     }
 
     @Override
     public String delete(int id) {
         logger.info("Inside OrderRepository.delete()");
-
         // Validate the ID
         if (id < 0 || id >= orderList.size()) {
             logger.error("Invalid ID. Order not found.");
             return "Order not found";
         }
-
         // Remove the order from the list
         orderList.remove(id); // Assuming id is used as an index for removal
-
         // Log the action
         logger.info("Order with ID " + id + " removed.");
 
         return "Order removed";
     }
 
-
     @Override
     public List<Order> retrieve() {
         logger.info("Inside OrderRepository.retrieve()");
-
         for (Order order : orderList) {
             Customer customer = order.getCustomer(); // Assuming order has a getCustomer() method
-            Product product = order.getProduct();    // Assuming order has a getProduct() method
+            Product product = order.getProduct();// Assuming order has a getProduct() method
+            Supplier supplier = order.getSupplier();// Assuming order has a getSupplier() method
 
             // Log details of the order along with customer and product information
             logger.info("Order: " + order.toString() +
                     ", Customer: " + (customer != null ? customer.toString() : "No Customer") +
-                    ", Product: " + (product != null ? product.toString() : "No Product"));
+                    ", Product: " + (product != null ? product.toString() : "No Product")+
+                    ", Supplier: " + (supplier != null ? supplier.toString() : "No Product"));
         }
-
         return orderList;
     }
 
@@ -87,7 +87,8 @@ public class OrderRepository implements OrderEntryRepository<Order> {
         // Retrieve the order and associated customer and product
         Order order = orderList.get(index);
         Customer customer = order.getCustomer(); // Assuming Order has a getCustomer() method
-        Product product = order.getProduct();    // Assuming Order has a getProduct() method
+        Product product = order.getProduct();// Assuming Order has a getProduct() method
+        Supplier supplier =order.getSupplier();// Assuming Order has a getSupplier() method
 
         // Construct and return the string with order, customer, and product details
         String result = "Order: " + order.toString();
@@ -116,6 +117,7 @@ public class OrderRepository implements OrderEntryRepository<Order> {
         // Retrieve and validate Customer and Product from the updated Order
         Customer customer = order.getCustomer();
         Product product = order.getProduct();
+        Supplier supplier =order.getSupplier();
 
         if ((customer != null && customer.getId() <= 0) || (product != null && product.getId() <= 0)) {
             logger.error("Invalid Customer or Product ID. Update failed.");
@@ -127,6 +129,9 @@ public class OrderRepository implements OrderEntryRepository<Order> {
             existingOrder.setCustomer(customer);
         }
         if (product != null) {
+            existingOrder.setProduct(product);
+        }
+        if (supplier != null) {
             existingOrder.setProduct(product);
         }
         existingOrder.setOrderDate(order.getOrderDate()); // Update other relevant details as needed
