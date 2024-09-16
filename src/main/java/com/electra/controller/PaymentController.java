@@ -8,10 +8,10 @@ import java.util.List;
 
 @RestController
 public class PaymentController {
+
     @Autowired
     private PaymentService paymentService;
 
-    //@RequestMapping(path = "/payment", method = RequestMethod.GET)
     @GetMapping("/payment")
     public List<Payment> retrievePayments() {
         return paymentService.retrievePayments();
