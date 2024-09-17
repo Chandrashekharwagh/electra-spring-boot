@@ -14,31 +14,35 @@ import java.util.List;
 public class OrderRepository implements OrderEntryRepository<Order> {
     private static final Logger logger = LoggerFactory.getLogger(OrderRepository.class);
     private final List<Order> orderList = new ArrayList<>();
-    private int orderIndex = -1;
+    private final List<Product> productList = new ArrayList<>();
+    private final List<Customer> customerList = new ArrayList<>();
+    private final List<Supplier> supplierList = new ArrayList<>();
+    private int orderIndex = 0;
 
-    public String store(Order order) {
+    public String store(Order order ,Product product ,Customer customer ,Supplier supplier) {
         logger.info("Inside OrderRepository.store()");
 
-        // Increment and set a unique ID for the order
-        order.setId(++orderIndex);
+        int uniqueId = ++orderIndex;  // Increment orderIndex and use it for both
+        order.setId(uniqueId);
+        customer.setId(uniqueId);
+        product.setId(uniqueId);
+        supplier.setId(uniqueId);
 
-        // Add the order to the orderList
+        // Add order to their respective lists
         orderList.add(order);
-
-        // Retrieve associated product and customer from the order
-        Product product = order.getProduct(); // Assuming Order has a getProduct() method
-        Customer customer = order.getCustomer();
-        Supplier supplier = order.getSupplier();// Assuming Order has a getCustomer() method
+        customerList.add(customer);
+        productList.add(product);
+        supplierList.add(supplier);
 
         // Log the action
         logger.info("Stored Order with ID " + order.getId() +
-                " for Product with ID " + (product != null ? product.getId() : "None") +
-                " and Customer with ID " + (customer != null ? customer.getId() : "None") +
-                " and supplier with ID " + (supplier != null ? supplier.getId() : "None"));
+                " for Product with ID " + product.getId() +
+                " and Customer with ID " + customer.getId() +
+                " and supplier with ID " + supplier.getId());
 
-        return "Order stored for Product ID: " + (product != null ? product.getId() : "None") +
-                " and Customer ID: " + (customer != null ? customer.getId() : "None")+
-                " and Supplier ID: " + (supplier != null ? supplier.getId() : "None");
+        return "Order stored for Product ID: " + product.getId() +
+                " and Customer ID: " + customer.getId() +
+                " and Supplier ID: " + supplier.getId();
     }
 
     @Override
