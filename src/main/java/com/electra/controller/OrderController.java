@@ -1,6 +1,9 @@
 package com.electra.controller;
 
+import com.electra.domain.Customer;
 import com.electra.domain.Order;
+import com.electra.domain.Product;
+import com.electra.domain.Supplier;
 import com.electra.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +16,7 @@ public class OrderController {
 
     //@RequestMapping(path = "/order", method = RequestMethod.GET)
     @GetMapping("/order")
-    public List<Order> retrieveCustomers() {
+    public List<Order> retrieveOrders() {
         return orderService.retrieveOrders();
     }
 
@@ -28,8 +31,8 @@ public class OrderController {
     }
 
     @PostMapping("/order")
-    public String addOrder(@RequestBody Order order) {
-        return orderService.storeOrder(order);
+    public String addOrder(@RequestBody Order order , Product product , Customer customer , Supplier supplier) {
+        return orderService.storeOrder(order , product ,customer, supplier);
     }
 
     @PutMapping("/order/{orderId}")
