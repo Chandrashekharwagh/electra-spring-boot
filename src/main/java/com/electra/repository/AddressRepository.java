@@ -11,12 +11,14 @@ import java.util.List;
 public class AddressRepository implements AddressEntryRepository<Address> {
     private static final Logger logger = LoggerFactory.getLogger(AddressRepository.class);
     private List<Address> addressList = new ArrayList<>();
-    private int index = -1;
+    private int addressIndex = 0;
 
     public String store(Address address) {
         logger.info("/inside the AddressRepository.store()");
-        address.setId(++index);
-        addressList.add(index, address);
+        int uniqueId = ++addressIndex;
+        address.setId(uniqueId);
+        addressList.add(address);
+        logger.info("Address stored successfully with ID: " + uniqueId);
         return address.toString();
     }
 
