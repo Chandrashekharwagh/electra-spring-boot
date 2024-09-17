@@ -13,7 +13,7 @@ import java.util.List;
 public class BrandRepository implements BrandEntryRepository<Brand>{
     private static final Logger logger = LoggerFactory.getLogger(BrandRepository.class);
     private List<Brand> brandList = new ArrayList<>();
-    private int index = -1;
+    private int index = 0;
 
     public String store(Brand brand) {
         logger.info("/inside the BrandRepository.store()");
