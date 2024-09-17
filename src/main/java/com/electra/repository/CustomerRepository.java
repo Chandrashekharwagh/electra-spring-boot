@@ -13,7 +13,7 @@ public class CustomerRepository implements CustomerEntryRepository<Customer>{
     private static final Logger logger = LoggerFactory.getLogger(CustomerRepository.class);
     private final List<Customer> customerList = new ArrayList<>();
     private final List<Address> addressList = new ArrayList<>();
-    private int customerIndex = -1;
+    private int customerIndex = 0;
 
     public String store(Customer customer, Address address) {
         logger.info("Inside CustomerRepository.store()");
