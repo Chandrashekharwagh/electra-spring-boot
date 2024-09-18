@@ -1,6 +1,9 @@
 package com.electra.service;
 
+import com.electra.domain.Customer;
 import com.electra.domain.Order;
+import com.electra.domain.Product;
+import com.electra.domain.Supplier;
 import com.electra.repository.OrderRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,13 +19,21 @@ public class OrderService {
     private OrderRepository repo;
 
     public List<Order> retrieveOrders() {
-        logger.info("/inside the OrderService.retrieveOrders()");
-        return repo.retrieve();
+        logger.info("Inside OrderService.retrieveOrders()");
+
+        // Retrieve the list of Orders from the repository
+        List<Order> orders = repo.retrieve();
+
+        // Log the number of Orders retrieved
+        logger.info("Number of Orders retrieved: " + orders.size());
+
+        // Return the list of Orders
+        return orders;
     }
 
-    public String storeOrder(Order order) {
+    public String storeOrder(Order order , Product product , Customer customer , Supplier supplier) {
         logger.info("/inside the OrderService.addOrder()");;
-        return repo.store(order);
+        return repo.store(order , product , customer , supplier);
     }
 
     public String deleteOrder(int id) {
