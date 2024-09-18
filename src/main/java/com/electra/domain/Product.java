@@ -10,9 +10,9 @@ import lombok.*;
 @Builder
 
 public class Product {
-    private int id;
+    private long id;
     private String name;
     private String description;
     private Double price;
-    private Long brandId;
+    private Brand brand;
 }
