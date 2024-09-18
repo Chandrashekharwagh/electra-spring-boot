@@ -11,7 +11,7 @@ import java.util.List;
 public class SupplierRepository implements SupplierEntryRepository<Supplier>{
     private static final Logger logger = LoggerFactory.getLogger(SupplierRepository.class);
     private final List<Supplier> supplierList = new ArrayList<>();
-    private int index = -1;
+    private int index = 0;
 
     public String store(Supplier supplier) {
         logger.info("/inside the SupplierRepository.store()");
@@ -45,14 +45,14 @@ public class SupplierRepository implements SupplierEntryRepository<Supplier>{
 
         // Checking if Name is neither null nor empty
         if (!(supplier.getName().isBlank() || supplier.getName().isEmpty())) {
-            this.supplierList.get(supplier.getId()).setName(supplier.getName());
+            this.supplierList.get(Math.toIntExact(supplier.getId())).setName(supplier.getName());
         }
 
         // Checking if Contact Info is neither null nor empty
         if (supplier.getContactInfo().isBlank()|| supplier.getContactInfo().isEmpty()) {
-            this.supplierList.get(supplier.getId()).setContactInfo(supplier.getContactInfo());
+            this.supplierList.get(Math.toIntExact(supplier.getId())).setContactInfo(supplier.getContactInfo());
         }
 
-        return this.supplierList.get(supplier.getId()).toString();
+        return this.supplierList.get(Math.toIntExact(supplier.getId())).toString();
     }
 }
