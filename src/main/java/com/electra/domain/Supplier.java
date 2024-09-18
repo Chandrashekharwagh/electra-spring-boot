@@ -10,7 +10,7 @@ import lombok.*;
 @Builder
 
 public class Supplier {
-    private int id;
+    private long id;
     private String name;
     private String contactInfo;
 }
